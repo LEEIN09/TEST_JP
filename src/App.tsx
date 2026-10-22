@@ -7,11 +7,9 @@ import {
   CheckCircle2,
   CircleHelp,
   Clock3,
-  Flower2,
   Home,
   Leaf,
   RotateCcw,
-  Sparkles,
   Sprout,
   TrendingUp,
   X,
@@ -265,10 +263,13 @@ export default function App() {
             は
           </span>
           <span>
-            하루<span className="brand-sub">나의 첫 일본어</span>
+            하루
+            <span className="brand-sub" lang="ja">
+              日本語の練習
+            </span>
           </span>
         </a>
-        <div className="sidebar-label">MY JAPANESE JOURNEY</div>
+        <div className="sidebar-label">일본어 연습장 · 입문</div>
         <nav aria-label="주 메뉴">
           {navigation.map(({ id, label, icon: Icon }) => (
             <button
@@ -293,13 +294,9 @@ export default function App() {
           ))}
         </nav>
         <div className="sidebar-bottom">
-          <div className="little-garden">
-            <Sprout size={29} strokeWidth={1.5} />
-            <p>
-              조금씩, 꾸준히.
-              <br />
-              <strong>어제보다 한 걸음 더.</strong>
-            </p>
+          <div className="notebook-spine" aria-hidden="true">
+            <span lang="ja">ひとつずつ。</span>
+            <span>하루의 일본어 연습장</span>
           </div>
           <button className="help-button" onClick={() => setShowHelp(true)}>
             <CircleHelp size={18} /> 하루 이용 안내
@@ -310,14 +307,14 @@ export default function App() {
 
       <div className="workspace">
         <header className="topbar">
-          <span>처음부터 차근차근, 나만의 속도로</span>
+          <span className="desktop-masthead">일본어를 배우는 작은 습관</span>
+          <span className="mobile-brand">
+            하루<span lang="ja">日本語の練習</span>
+          </span>
           <div className="topbar-right">
             <span className="level-pill">
               <span />
-              입문 · 첫걸음
-            </span>
-            <span className="avatar" aria-label="학습자">
-              나
+              입문 · 3단원
             </span>
           </div>
         </header>
@@ -591,7 +588,7 @@ export default function App() {
               {session.phase === "result" && (
                 <div className="result-content">
                   <div className="result-flower">
-                    <Flower2 size={44} strokeWidth={1.3} />
+                    <Check size={35} strokeWidth={1.6} />
                   </div>
                   <span className="eyebrow">A LITTLE PROGRESS, EVERY DAY</span>
                   <h1 ref={heading} tabIndex={-1}>
@@ -656,26 +653,25 @@ export default function App() {
                 <div>
                   <div className="eyebrow">
                     {tab === "home"
-                      ? "YOUR DAILY JAPANESE"
+                      ? "きょうのべんきょう"
                       : tab === "notes"
-                        ? "MY FIRST HIRAGANA"
+                        ? "ことばのノート"
                         : tab === "review"
-                          ? "MAKE IT STICK"
-                          : "SMALL STEPS, REAL PROGRESS"}
+                          ? "もういちど"
+                          : "べんきょうの記録"}
                   </div>
                   <h1 ref={heading} tabIndex={-1}>
                     {tab === "home"
-                      ? "반가워요, 오늘도 하루 한 걸음"
+                      ? "오늘의 일본어"
                       : tab === "notes"
-                        ? "나의 첫 글자 노트"
+                        ? "글자와 표현 노트"
                         : tab === "review"
-                          ? "기억이 되는 복습"
-                          : "차곡차곡 쌓인 배움"}
-                    <span className="heading-dot">.</span>
+                          ? "다시 꺼내 보는 복습"
+                          : "나의 학습 기록"}
                   </h1>
                   <p>
                     {tab === "home"
-                      ? "서두르지 않아도 괜찮아요. 오늘의 작은 배움을 시작해 볼까요?"
+                      ? "한 단원씩 배우고, 기억나는 만큼 직접 답해 보세요."
                       : tab === "notes"
                         ? "글자부터 인사말까지, 소리와 뜻을 함께 익혀 보세요."
                         : tab === "review"
@@ -690,22 +686,49 @@ export default function App() {
 
               {tab === "home" && (
                 <>
-                  <section className="hero">
-                    <div className="hero-copy">
-                      <span className="hero-tag">
-                        <span />
-                        처음 시작하는 일본어
+                  <section className="hero" aria-label="오늘의 추천 학습">
+                    <div className="lesson-sheet-top">
+                      <span className="lesson-number">
+                        제{" "}
+                        {String(
+                          lessons.findIndex(
+                            (lesson) => lesson.id === nextLesson.id,
+                          ) + 1,
+                        ).padStart(2, "0")}{" "}
+                        과
                       </span>
-                      <h2>
-                        작은 배움이 모여,
-                        <br />
-                        새로운 세상이 열려요.
-                      </h2>
-                      <p>
-                        오늘의 추천 단원: {nextLesson.title}
-                        <br />
-                        아는 만큼, 읽을 수 있는 세상이 넓어질 거예요.
-                      </p>
+                      <span className="hero-meta">
+                        <Clock3 size={14} /> 약 {nextLesson.minutes}분 ·{" "}
+                        {nextLesson.ids.length}개 항목
+                      </span>
+                    </div>
+                    <div className="lesson-sheet-body">
+                      <div className="hero-copy">
+                        <p className="lesson-kicker">
+                          오늘의 추천 단원: {nextLesson.title}
+                        </p>
+                        <h2>{nextLesson.subtitle}</h2>
+                        <p>
+                          {nextLesson.kind === "kana"
+                            ? "글자의 모양과 소리를 익혀요."
+                            : "인사말의 소리와 쓰임을 익혀요."}
+                        </p>
+                      </div>
+                      <div
+                        className={`lesson-characters ${nextLesson.kind === "greeting" ? "lesson-phrase" : ""}`}
+                        lang="ja"
+                        aria-hidden="true"
+                      >
+                        {nextLesson.kind === "kana" ? (
+                          nextLesson.ids.map((id) => (
+                            <span key={id}>{getItem(id).glyph}</span>
+                          ))
+                        ) : (
+                          <span>こんにちは</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="lesson-sheet-bottom">
                       <button
                         className="primary"
                         onClick={() => start("lesson")}
@@ -719,32 +742,9 @@ export default function App() {
                               : "다음 단원 시작하기"}
                         <ArrowRight size={18} />
                       </button>
-                      <span className="hero-meta">
-                        <Clock3 size={14} /> 약 {nextLesson.minutes}분
-                        <span>·</span>
-                        {nextLesson.ids.length}개 항목
+                      <span className="lesson-method">
+                        듣고 <span>→</span> 고르고 <span>→</span> 직접 답하기
                       </span>
-                    </div>
-                    <div className="hero-art" aria-hidden="true">
-                      <span className="art-ring ring-one" />
-                      <span className="art-ring ring-two" />
-                      <span className="art-spark spark-one">✳</span>
-                      <span className="art-spark spark-two">+</span>
-                      <div className="back-card">
-                        <span>い</span>
-                      </div>
-                      <div className="front-card">
-                        <span className="flashcard-label">나의 첫 일본어</span>
-                        <span className="flashcard-glyph" lang="ja">
-                          あ
-                        </span>
-                        <span className="flashcard-reading">a · 아</span>
-                        <span className="flashcard-line" />
-                      </div>
-                      <div className="floating-leaf">
-                        <Leaf size={25} strokeWidth={1.4} />
-                      </div>
-                      <span className="art-caption">a little, every day</span>
                     </div>
                   </section>
                   <section className="stats-strip" aria-label="학습 요약">
@@ -795,21 +795,19 @@ export default function App() {
                         <span className="review-symbol">
                           <RotateCcw size={22} />
                         </span>
-                        <span className="small-label">나를 위한 복습</span>
+                        <span className="small-label">복습 노트</span>
                       </div>
                       <h2>
                         {due.length
-                          ? "기억을 한 번 더 꺼내 볼까요?"
-                          : learned
-                            ? "기억이 자라는 중이에요"
-                            : "배운 만큼, 오래 기억하도록"}
+                          ? `${due.length}개를 다시 볼 시간이에요`
+                          : "지금은 복습할 항목이 없어요"}
                       </h2>
                       <p>
                         {due.length
-                          ? `${due.length}개의 글자·표현이 기다리고 있어요. 다시 보면 더 익숙해져요.`
+                          ? "배운 글자와 표현을 선택지 없이 떠올려 보세요."
                           : learned
-                            ? "복습할 시간이 되면 이곳에 알려 드릴게요. 오늘 배운 내용을 천천히 떠올려 보세요."
-                            : "학습을 시작하면 글자마다 복습할 때를 챙겨 드릴게요."}
+                            ? "예정된 시간이 되면 복습할 항목이 여기에 나타나요."
+                            : "첫 학습을 마치면 복습 일정을 알려 드려요."}
                       </p>
                       <button
                         className="review-link"
@@ -821,11 +819,6 @@ export default function App() {
                         <ArrowRight size={17} />
                       </button>
                     </section>
-                  </div>
-                  <div className="gentle-note">
-                    <Sparkles size={17} />
-                    <span>많이 외우는 하루보다, 하나라도 기억하는 하루.</span>
-                    <span lang="ja">一歩ずつ</span>
                   </div>
                 </>
               )}
@@ -854,7 +847,7 @@ export default function App() {
                       {due.length
                         ? "정답을 보기 전에 먼저 떠올려 보세요. 틀려도 괜찮아요."
                         : learned
-                          ? "첫 정답은 다음 날, 고쳐 맞힌 항목는 10분 뒤에 다시 만나요. 정답이 쌓이면 복습 간격이 늘어나요."
+                          ? "첫 정답은 다음 날, 고쳐 맞힌 항목은 10분 뒤에 다시 만나요. 정답이 쌓이면 복습 간격이 늘어나요."
                           : "글자를 배우고 문제를 풀면, 나에게 맞는 복습 일정이 생겨요."}
                     </p>
                     {due.length ? (
@@ -1026,7 +1019,7 @@ export default function App() {
                 >
                   이용 안내 · 음성 출처
                 </button>
-                <span>매일 조금씩, 나에게 남는 배움.</span>
+                <span>학습 기록은 이 브라우저에 저장됩니다.</span>
               </footer>
             </>
           )}

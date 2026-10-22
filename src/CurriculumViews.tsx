@@ -23,7 +23,7 @@ export function CourseList({
   return (
     <section className="learning-path">
       <div className="section-title">
-        <h2>나의 학습 길</h2>
+        <h2>학습 목차</h2>
         <span>
           {completeCount} / {lessons.length}단원 완료
         </span>
@@ -36,12 +36,12 @@ export function CourseList({
           const completed = isLessonComplete(progress, lesson.id);
           return (
             <article className="course-card" key={lesson.id}>
-              <div className="course-symbol" lang="ja">
-                {lesson.symbol}
+              <div className="course-symbol" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
               </div>
               <div className="course-copy">
                 <span className="eyebrow">
-                  LESSON 0{index + 1} ·{" "}
+                  제 {index + 1} 과 ·{" "}
                   {lesson.kind === "kana" ? "문자와 소리" : "뜻과 쓰임"}
                 </span>
                 <h3>{lesson.title}</h3>

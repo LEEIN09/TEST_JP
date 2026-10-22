@@ -179,7 +179,9 @@ test("홈과 글자 노트에 가로 넘침이 없고 주요 화면이 표시된
   page,
 }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: /반가워요/ })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /오늘의 일본어/ }),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,

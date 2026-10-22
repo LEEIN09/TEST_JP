@@ -10,7 +10,9 @@ test("Pages 하위 경로에서 화면·음원·출처·새로고침이 동작�
     if (response.status() >= 400) failed.push(response.url());
   });
   await page.goto("./");
-  await expect(page.getByRole("heading", { name: /반가워요/ })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /오늘의 일본어/ }),
+  ).toBeVisible();
   await page
     .getByRole("button", { name: "이용 안내 · 음성 출처", exact: true })
     .click();
@@ -34,7 +36,9 @@ test("Pages 하위 경로에서 화면·음원·출처·새로고침이 동작�
     page.getByRole("button", { name: "あ 발음 멈추기", exact: true }),
   ).toBeVisible();
   await page.reload();
-  await expect(page.getByRole("heading", { name: /반가워요/ })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /오늘의 일본어/ }),
+  ).toBeVisible();
   expect(errors).toEqual([]);
   expect(failed).toEqual([]);
 });
