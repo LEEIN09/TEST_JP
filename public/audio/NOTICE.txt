@@ -1,0 +1,22 @@
+Haru Japanese — 14 pronunciation samples (あ-row, か-row, basic greetings)
+
+These are synthesized Japanese speech samples, not recordings of a native speaker.
+Generated with Open JTalk via pyopenjtalk-plus 0.4.1.post10, using HTS Voice Mei
+(mei_normal.htsvoice), at speed 0.8. Peak-normalized and encoded to MP3 (96 kbps).
+
+HTS Voice "Mei" — released by MMDAgent Project Team
+Copyright (c) 2009-2013 Nagoya Institute of Technology,
+Department of Computer Science.
+Project: https://www.mmdagent.jp/
+Voice license: Creative Commons Attribution 3.0
+https://creativecommons.org/licenses/by/3.0/
+Original voice notice: /audio/LICENSE-mei.txt
+
+Generator package and source:
+https://pypi.org/project/pyopenjtalk-plus/0.4.1.post10/
+https://github.com/tsukumijima/pyopenjtalk-plus
+
+The original voice model is not distributed with this application.
+No endorsement by the voice creators is implied.
+The generated samples are distributed with the same CC BY 3.0 attribution terms.
+See src/curriculum.json for texts and phonemes, and tools/generate_audio.py for regeneration instructions.

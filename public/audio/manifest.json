@@ -1,0 +1,72 @@
+{
+  "a": {
+    "glyph": "あ",
+    "phoneme": "a",
+    "sha256": "dd566f755b25c2f986fd0359e80b29df9aa8cad2423e6a2b4491c394fab13e4e"
+  },
+  "i": {
+    "glyph": "い",
+    "phoneme": "i",
+    "sha256": "08a39727bfbc3b640a7e5f105e805ad3de630b0ed9c2bec61706187e9efff67a"
+  },
+  "u": {
+    "glyph": "う",
+    "phoneme": "u",
+    "sha256": "d10a2fb9237bfa80ef4eb95a029063c40324fd339772a6b1f26d7e3ec63434cb"
+  },
+  "e": {
+    "glyph": "え",
+    "phoneme": "e",
+    "sha256": "76793030c248cadab42cb483ca52a3e605356b05fb159a0ece2a5ebf76f4b1d2"
+  },
+  "o": {
+    "glyph": "お",
+    "phoneme": "o",
+    "sha256": "03b3e05833b9ee0c8e234a65535f0f2dbd74197f82fcd9e6225723849feafec8"
+  },
+  "ka": {
+    "glyph": "か",
+    "phoneme": "k a",
+    "sha256": "60e408dfe8074711f091195409694460cc7491b3f66c376dd2d811bf3cc7b76b"
+  },
+  "ki": {
+    "glyph": "き",
+    "phoneme": "k i",
+    "sha256": "201e1c383418f7571ddc18efabf7d770730245ff1e58b5bad9b9ac7753bfe2c9"
+  },
+  "ku": {
+    "glyph": "く",
+    "phoneme": "k u",
+    "sha256": "42fb9879a9bf3fca700089093823aecc728672457487ee722a983317ec940dbb"
+  },
+  "ke": {
+    "glyph": "け",
+    "phoneme": "k e",
+    "sha256": "7cd46bdd084eb37e2d0814ccb6097bd7ddc33f85daf255bb56686c9e08e1a0e1"
+  },
+  "ko": {
+    "glyph": "こ",
+    "phoneme": "k o",
+    "sha256": "67be6f461d620ca6f89c1bfbb3369d8a427ce95ba45c1f02d36dd6ff1b80faea"
+  },
+  "ohayou": {
+    "glyph": "おはよう",
+    "phoneme": "o h a y o o",
+    "sha256": "ce5929d65d1d03ae7ba8600478a2a323d02cf89370f86ca8088a4805268daeb2"
+  },
+  "konnichiwa": {
+    "glyph": "こんにちは",
+    "phoneme": "k o N n i ch i w a",
+    "sha256": "a457b53c937ef2f38940f2c86ff4e4fbb0b724e37045096103a1354dee4559f6"
+  },
+  "arigatou": {
+    "glyph": "ありがとう",
+    "phoneme": "a r i g a t o o",
+    "sha256": "4b19804afbd0922d89b4c082dd503954c5c3c8b43a51b5e99655eca73fa5bb36"
+  },
+  "oyasumi": {
+    "glyph": "おやすみなさい",
+    "phoneme": "o y a s u m i n a s a i",
+    "sha256": "2a2303711656b9752ced40959413eed03e5f2bb6bcd2c950f17e2e773a37c53c"
+  }
+}
