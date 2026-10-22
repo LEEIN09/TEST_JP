@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Play } from "lucide-react";
 import {
   allItems,
   getItem,
@@ -40,12 +40,12 @@ export function CourseList({
                 {String(index + 1).padStart(2, "0")}
               </div>
               <div className="course-copy">
-                <span className="eyebrow">
-                  제 {index + 1} 과 ·{" "}
-                  {lesson.kind === "kana" ? "문자와 소리" : "뜻과 쓰임"}
-                </span>
                 <h3>{lesson.title}</h3>
-                <p>{lesson.description}</p>
+                <p>
+                  {lesson.kind === "kana"
+                    ? lesson.ids.map((id) => getItem(id).glyph).join(" · ")
+                    : "아침 인사, 낮 인사, 감사와 잘 자요"}
+                </p>
                 <div
                   className="course-progress"
                   aria-label={`${lesson.title} 연습한 항목 ${practiced}개`}
@@ -59,20 +59,19 @@ export function CourseList({
                 <div className="course-foot">
                   <span>
                     {completed
-                      ? "학습 완료 · 다시 학습할 수 있어요"
+                      ? "학습 완료 · 다시 보기"
                       : practiced
                         ? `${practiced} / ${lesson.ids.length}개 연습 중`
-                        : "처음부터 천천히 배워요"}
+                        : `${lesson.ids.length}개 항목 · 약 ${lesson.minutes}분`}
                   </span>
-                  <span>약 {lesson.minutes}분</span>
                 </div>
               </div>
               <button
-                className="circle-button"
+                className="course-start"
                 aria-label={`${lesson.title} 학습 시작`}
                 onClick={() => onStart(lesson.id)}
               >
-                <ArrowRight size={20} />
+                <Play size={18} fill="currentColor" strokeWidth={1.5} />
               </button>
             </article>
           );

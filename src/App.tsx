@@ -707,7 +707,7 @@ export default function App() {
                         <p className="lesson-kicker">
                           오늘의 추천 단원: {nextLesson.title}
                         </p>
-                        <h2>{nextLesson.subtitle}</h2>
+                        <h2>{nextLesson.title}</h2>
                         <p>
                           {nextLesson.kind === "kana"
                             ? "글자의 모양과 소리를 익혀요."
